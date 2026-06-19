@@ -1,72 +1,48 @@
 # js
-JavaScript-da funksiyalar bilan ishlash, parametrlarni uzatish va return operatori yordamida qiymat qaytarishni o'rganish uchun ajoyib vazifa.
+JavaScript-da for tsikli va if shart operatori yordamida berilgan orliqdagi juft sonlarni ajratish hamda ularning yig'indisini hisoblash juda oson.
 
-Siz so'ragan onlayn do'kon mantiqini hisoblaydigan tayyor kod va uning README.md faylini quyida keltiraman.
+Quyida ushbu vazifa uchun toza yozilgan script.js kodi va uning tushunarli README.md faylini keltiraman.
 
 1. script.js fayli kodi
 JavaScript
 /**
- * Loyiha: Onlayn Do'kon Tizimi (Xaridni Hisoblash)
- * Tavsif: Mahsulot narxi va miqdoriga qarab umumiy summani hisoblash
- * hamda ma'lum miqdordan oshganda chegirma qo'llash funksiyalari.
+ * Loyiha: Juft sonlar yig'indisini hisoblash
+ * Tavsif: 1 dan 50 gacha bo'lgan sonlar ichidan faqat juftlarini ajratib olib,
+ * ularning umumiy yig'indisini for tsikli yordamida hisoblash.
  */
 
-// 1. Umumiy summani hisoblaydigan funksiya
-function hisobla(mahsulotNarxi, miqdori) {
-    return mahsulotNarxi * miqdori;
-}
+let yigindi = 0; // Yig'indini saqlash uchun o'zgaruvchi
 
-// 2. Chegirma hisoblaydigan funksiya
-function chegirmaBer(umumiySumma) {
-    // Agar summa 100 000 so'mdan ko'p bo'lsa, 10% chegirma qilinadi
-    if (umumiySumma > 100000) {
-        let chegirmaMiqdori = umumiySumma * 0.10; // 10% ni hisoblash
-        return umumiySumma - chegirmaMiqdori;    // Yakuniy narx
-    } else {
-        return umumiySumma; // Chegirmasiz asl narx
+// 1 dan 50 gacha bo'lgan sonlarni aylanish (50 ning o'zi ham kiradi: <=)
+for (let i = 1; i <= 50; i++) {
+    // Sonni 2 ga bo'lgandagi qoldiq 0 bo'lsa, u juft son hisoblanadi
+    if (i % 2 === 0) {
+        yigindi += i; // Juft sonni yig'indiga qo'shish
     }
 }
 
-// 3. Funksiyalarni chaqirish va natijani aniqlash
-const narx = 40000;  // 1 ta mahsulot narxi
-const soni = 3;      // Olingan mahsulot miqdori
-
-// Birinchi funksiya orqali jami summani topamiz (40000 * 3 = 120000)
-const jamiSumma = hisobla(narx, soni);
-
-// Ikkinchi funksiya orqali chegirmani tekshiramiz
-const yakuniyToLov = chegirmaBer(jamiSumma);
-
-// 4. Natijani konsolga chiqarish
-console.log("================ XARID CHEKI ================");
-console.log(`Mahsulot narxi: ${narx} so'm`);
-console.log(`Miqdori: ${soni} ta`);
-console.log(`Asl jami summa: ${jamiSumma} so'm`);
-console.log("--------------------------------------------");
-console.log(`Yakuniy to'lov miqdori (Chegirma bilan): ${yakuniyToLov} so'm`);
+// Yakuniy natijani konsolga chiqarish
+console.log("================== NATIJA ==================");
+console.log(`1 dan 50 gacha bo'lgan juft sonlar yig'indisi: ${yigindi}`);
 console.log("============================================");
 2. README.md fayli tarkibi
 Markdown
-# Onlayn Do'kon Xarid Tizimi
+# Juft Sonlar Yig'indisini Hisoblash Dasturi
 
-Ushbu loyiha JavaScript-da funksiyalar (functions), parametrlardan foydalanish va shartli operatorlar yordamida mantiqiy hisob-kitoblarni bajarishni o'rgatadi.
+Ushbu mantiqiy dastur JavaScript-da `for` tsikli va qoldikli bo'lish (`%`) operatori yordamida ma'lum bir orliqdagi sonlarni saralashni o'rgatadi.
 
-## ⚙️ Funksiyalar Qanday Ishlaydi?
+## 📋 Algoritm Qadamlari
 
-1. `hisobla(mahsulotNarxi, miqdori)`:
-   - Mahsulotning donasini uning narxiga ko'paytirib, umumiy summani chiqaradi.
-2. `chegirmaBer(umumiySumma)`:
-   - Agar jami summa **100 000 so'mdan** oshsa, xaridorga **10% chegirma** taqdim etadi. Aks holda narx o'zgarmaydi.
+1. Yig'indini hisoblab borish uchun boshlang'ich qiymati `0` bo'lgan `yigindi` o'zgaruvchisi yaratildi.
+2. `for` tsikli orqali 1 dan 50 gacha bo'lgan barcha sonlar birma-bir ko'rib chiqiladi.
+3. `if (i % 2 === 0)` sharti yordamida har bir sonning juft yoki toqligi tekshiriladi.
+4. Agar son juft bo'lsa, u `yigindi` o'zgaruvchisiga qo'shib boriladi.
 
 ## 💻 Ishga tushirish yo'riqnomasi
 
-Dasturni terminal orqali ishga tushirish uchun quyidagi buyruqni yozing:
+Dasturni terminalda ishga tushirish uchun quyidagi buyruqni yozing:
 
 ```bash
 node script.js
-📊 Hisoblash Ssenariysi
-3 ta 40 000 so'mlik mahsulot = 120 000 so'm.
-
-120 000 so'm > 100 000 so'm bo'lgani uchun 10% chegirma chegiriladi (12 000 so'm).
-
-Yakuniy to'lov: 108 000 so'm.
+📊 Matematik Natija
+Matematik formulaga ko'ra ham 2 dan 50 gacha bo'lgan juft sonlar yig'indisi 650 ga teng chiqadi.
