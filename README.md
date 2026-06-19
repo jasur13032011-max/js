@@ -1,90 +1,70 @@
 # js
-JavaScript-da obyektlar (Objects), ularning xususiyatlarini o'zgartirish va ichki metodlarda this kalit so'zidan foydalanishni o'rganish uchun juda qiziqarli vazifa.
+JavaScript-da DOM (Document Object Model) bilan ishlash, elementlarni tanlab olish va tugma bosilganda sahifa uslublarini (CSS) o'zgartirishni o'rganish uchun juda amaliy vazifa. Bu odatda saytlarda "Tungi rejim" (Dark mode) funksiyasini yaratishda qo'llaniladi.
 
-Avtosalon tizimi mantiqini to'liq bajaradigan script.js kodi va uning README.md qo'llanmasini quyida keltiraman.
+Topshiriq talablariga mos keladigan HTML, JavaScript kodlarini va uning README.md qo'llanmasini quyida keltiraman.
 
-1. script.js fayli kodi
+1. index.html va script.js kodlari
+Loyihangiz to'g'ri ishlashi uchun bitta papkada index.html va script.js fayllarini yarating.
+
+index.html fayli:
+HTML
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangni o'zgartirish tizimi</title>
+</head>
+<body>
+
+    <h1 id="sarlavha">Xush kelibsiz!</h1>
+    <p id="matn">Bu sahifadagi matn. Tugma bosilganda ushbu matn va fon rangi o'zgaradi.</p>
+    <button id="rejimTugmasi">Tungi rejimga o'tish</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+script.js fayli:
 JavaScript
 /**
- * Loyiha: Avtosalon Boshqaruv Tizimi
- * Tavsif: Mashina obyektini yaratish, xususiyatlarini tashqaridan yangilash,
- * obyekt metodlari va 'this' operatori yordamida qiymatlarni o'zgartirish.
+ * Loyiha: Sahifa rejimini o'zgartirish (Dark Mode)
+ * Tavsif: Tugma bosilganda sahifa foni, matnlar rangi va 
+ * tugma matnini dinamik ravishda o'zgartirish.
  */
 
-// 1. Mashina obyektini e'lon qilish
-const mashina = {
-    brend: "Chevrolet",
-    model: "Gentra",
-    yil: 2022,
-    narx: 13000,
-    tanirovka: false,
+// 2. Elementlarni o'zgaruvchilarga tutib olish
+const sahifaBodi = document.body;
+const tugma = document.getElementById("rejimTugmasi");
+const sarlavha = document.getElementById("sarlavha");
+const matn = document.getElementById("matn");
 
-    // Obyekt haqida ma'lumot beruvchi metod
-    malumotBering: function() {
-        console.log(`Brend: ${this.brend}, Model: ${this.model}, Narxi: ${this.narx}$`);
-    },
+// 3. Tugmaga 'click' hodisasini biriktirish
+tugma.addEventListener("click", function() {
+    
+    // 4. Sahifaning fon rangini qora qilish
+    sahifaBodi.style.backgroundColor = "black";
 
-    // Tanirovka holatini va narxini yangilovchi metod
-    tanirovkaQildir: function() {
-        this.tanirovka = true;
-        this.narx += 500; // Narxiga 500$ qo'shish
-        console.log("\n😎 Tanirovka qilindi! Mashina narxiga 500$ qo'shildi.\n");
-    }
-};
+    // Sarlavha va matnlar rangini oq rangga o'tkazish
+    sarlavha.style.color = "white";
+    matn.style.color = "white";
 
-// 2. Obyektdan tashqarida yangi "rang" xususiyatini qo'shish
-mashina.rang = "To'q kulrang";
-
-// 3. Obyektdan tashqarida "narx" xususiyatini yangilash
-mashina.narx = 12500;
-
-// 4. Dasturiy qadamlarni ketma-ket bajarish
-console.log("================= AVTOSALON TIZIMI =================");
-
-// Dastlab ma'lumotlarni chiqaramiz
-mashina.malumotBering();
-
-// Tanirovka qilish metodini ishga tushiramiz
-mashina.tanirovkaQildir();
-
-// Yakuniy holatni tekshirish uchun butun obyektni konsolga chiqaramiz
-console.log("================= YAKUNIY HOLAT =================");
-console.log(mashina);
-console.log("=================================================");
+    // Tugma ichidagi matnni o'zgartirish
+    tugma.textContent = "Kunduzgi rejimga o'tish";
+});
 2. README.md fayli tarkibi
 Markdown
-# Avtosalon Boshqaruv Tizimi
+# Sahifa Rejimini O'zgartirish Loyihasi
 
-Ushbu loyiha JavaScript-da Obyektlar (Objects), ularga dinamik ravishda yangi xususiyatlar qo'shish va obyekt ichidagi metodlarda `this` kalit so'zi bilan ishlashni o'rgatadi.
+Ushbu loyiha JavaScript yordamida brauzer darchasidagi HTML elementlarini boshqarish (DOM manipulyatsiyasi) va hodisalarni tinglash (`addEventListener`) ko'nikmasini rivojlantirish uchun yaratilgan.
 
-## 🛠 Obyekt mantiqi va o'zgarishlar
-
-1. **Dinamik o'zgarishlar:** `rang` xususiyati obyektdan tashqarida qo'shildi va boshlang'ich `narx` (13000) tashqaridan `12500` ga tushirildi.
-2. `malumotBering()` metodi: `this` orqali obyekt ichidagi joriy ma'lumotlarni konsolga chiroyli formatda chiqaradi.
-3. `tanirovkaQildir()` metodi: `tanirovka` qiymatini `true` qiladi va mashina narxini automatic ravishda **500$** ga oshiradi.
+## 📋 Bajarilgan vazifalar:
+1. HTMLda `h1`, `p`, va `button` elementlari yaratilib, tegishli `id`lar biriktirildi.
+2. JavaScriptda `document.getElementById` va `document.body` orqali elementlar tutib olindi.
+3. `click` hodisasi yordamida tugma bosilganda sahifaning CSS uslublari (`style.backgroundColor`, `style.color`) o'zgartirildi.
+4. Tugma matni `textContent` xususiyati orqali yangilandi.
 
 ## 💻 Ishga tushirish yo'riqnomasi
 
-Dasturni terminal orqali ishga tushirish buyrug'i:
-
-```bash
-node script.js
-📊 Kutilayotgan Natija
-Plaintext
-================= AVTOSALON TIZIMI =================
-Brend: Chevrolet, Model: Gentra, Narxi: 12500$
-
-😎 Tanirovka qilindi! Mashina narxiga 500$ qo'shildi.
-
-================= YAKUNIY HOLAT =================
-{
-  brend: 'Chevrolet',
-  model: 'Gentra',
-  yil: 2022,
-  narx: 13000,
-  tanirovka: true,
-  malumotBering: [Function: malumotBering],
-  tanirovkaQildir: [Function: tanirovkaQildir],
-  rang: "To'q kulrang"
-}
-=================================================
+1. Kodlarni kompyuteringizda bitta papkaga joylang.
+2. `index.html` faylini istalgan brauzerda (Chrome, Firefox, Safari) oching.
+3. Sahifadagi "Tungi rejimga o'tish" tugmasini bosing va o'zgarishni kuzating.
