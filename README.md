@@ -1,63 +1,72 @@
 # js
-Kutubxona tizimi vazifasini JavaScript massiv metodlari (push, shift) va for tsikli yordamida to'liq va xatosiz bajaramiz.
+JavaScript-da funksiyalar bilan ishlash, parametrlarni uzatish va return operatori yordamida qiymat qaytarishni o'rganish uchun ajoyib vazifa.
 
-Loyihangiz xuddi avvalgi topshiriqlardek chiroyli tartibda bo'lishi uchun quyidagi ikki faylni yarating.
+Siz so'ragan onlayn do'kon mantiqini hisoblaydigan tayyor kod va uning README.md faylini quyida keltiraman.
 
 1. script.js fayli kodi
 JavaScript
 /**
- * Loyiha: Kutubxona Tizimi
- * Tavsif: Massiv metodlari yordamida kitoblar omborini yangilash,
- * elementlarni qo'shish, o'chirish va ularni tartib bilan konsolga chiqarish.
+ * Loyiha: Onlayn Do'kon Tizimi (Xaridni Hisoblash)
+ * Tavsif: Mahsulot narxi va miqdoriga qarab umumiy summani hisoblash
+ * hamda ma'lum miqdordan oshganda chegirma qo'llash funksiyalari.
  */
 
-// 1. Dastlabki 3 ta kitobdan iborat massiv yaratamiz
-const kitoblar = ["Dunyoning ishlari", "Sariq devni minib", "Yulduzli tunlar"];
-
-// 2. Yangi kitoblarni massivning OXIRIGA qo'shamiz
-kitoblar.push("O'tkan kunlar", "Kichik shahzoda");
-
-// 3. Eng BIRINCHI turgan kitobni massiv boshidan o'chirib tashlaymiz
-const olibKetilganKitob = kitoblar.shift();
-
-// Qo'shimcha: Qaysi kitob olib ketilganini konsolda ko'rsatish
-console.log(`🔔 Bildirishnoma: "${olibKetilganKitob}" kitobi o'quvchi tomonidan olib ketildi.\n`);
-
-// 4. Qolgan barcha kitoblarni for tsikli yordamida tartib raqami bilan chiqaramiz
-console.log("================ KUTUBXONADA QOLGAN KITOBLAR ================");
-
-for (let i = 0; i < kitoblar.length; i++) {
-    // i o'zgaruvchisi 0 dan boshlangani uchun foydalanuvchiga 1, 2, 3... ko'rinishida ko'rsatamiz
-    console.log(`${i + 1}. ${kitoblar[i]}`);
+// 1. Umumiy summani hisoblaydigan funksiya
+function hisobla(mahsulotNarxi, miqdori) {
+    return mahsulotNarxi * miqdori;
 }
 
-console.log("============================================================");
+// 2. Chegirma hisoblaydigan funksiya
+function chegirmaBer(umumiySumma) {
+    // Agar summa 100 000 so'mdan ko'p bo'lsa, 10% chegirma qilinadi
+    if (umumiySumma > 100000) {
+        let chegirmaMiqdori = umumiySumma * 0.10; // 10% ni hisoblash
+        return umumiySumma - chegirmaMiqdori;    // Yakuniy narx
+    } else {
+        return umumiySumma; // Chegirmasiz asl narx
+    }
+}
+
+// 3. Funksiyalarni chaqirish va natijani aniqlash
+const narx = 40000;  // 1 ta mahsulot narxi
+const soni = 3;      // Olingan mahsulot miqdori
+
+// Birinchi funksiya orqali jami summani topamiz (40000 * 3 = 120000)
+const jamiSumma = hisobla(narx, soni);
+
+// Ikkinchi funksiya orqali chegirmani tekshiramiz
+const yakuniyToLov = chegirmaBer(jamiSumma);
+
+// 4. Natijani konsolga chiqarish
+console.log("================ XARID CHEKI ================");
+console.log(`Mahsulot narxi: ${narx} so'm`);
+console.log(`Miqdori: ${soni} ta`);
+console.log(`Asl jami summa: ${jamiSumma} so'm`);
+console.log("--------------------------------------------");
+console.log(`Yakuniy to'lov miqdori (Chegirma bilan): ${yakuniyToLov} so'm`);
+console.log("============================================");
 2. README.md fayli tarkibi
 Markdown
-# Kutubxona Boshqaruv Tizimi
+# Onlayn Do'kon Xarid Tizimi
 
-Ushbu amaliy loyiha JavaScript tilida massivlar (Array) va ularning asosiy metodlari bilan ishlashni ko'rsatib beradi.
+Ushbu loyiha JavaScript-da funksiyalar (functions), parametrlardan foydalanish va shartli operatorlar yordamida mantiqiy hisob-kitoblarni bajarishni o'rgatadi.
 
-## 📋 Bajarilgan Qadamlar
+## ⚙️ Funksiyalar Qanday Ishlaydi?
 
-1. `kitoblar` nomli boshlang'ich massiv e'lon qilindi.
-2. `push()` metodi orqali massiv oxiriga yangi kitoblar muvaffaqiyatli qo'shildi.
-3. `shift()` metodi yordamida eng birinchi element (kitob) ro'yxatdan o'chirildi.
-4. `for` tsikli yordamida omborda qolgan kitoblar tartib raqami (`1, 2, 3...`) bilan konsolga chiqarildi.
+1. `hisobla(mahsulotNarxi, miqdori)`:
+   - Mahsulotning donasini uning narxiga ko'paytirib, umumiy summani chiqaradi.
+2. `chegirmaBer(umumiySumma)`:
+   - Agar jami summa **100 000 so'mdan** oshsa, xaridorga **10% chegirma** taqdim etadi. Aks holda narx o'zgarmaydi.
 
 ## 💻 Ishga tushirish yo'riqnomasi
 
-Dasturni kompyuteringizda ishga tushirish uchun quyidagi buyruqni terminalda bajaring:
+Dasturni terminal orqali ishga tushirish uchun quyidagi buyruqni yozing:
 
 ```bash
 node script.js
-📊 Kutilayotgan Natija
-Plaintext
-🔔 Bildirishnoma: "Dunyoning ishlari" kitobi o'quvchi tomonidan olib ketildi.
+📊 Hisoblash Ssenariysi
+3 ta 40 000 so'mlik mahsulot = 120 000 so'm.
 
-================ KUTUBXONADA QOLGAN KITOBLAR ================
-1. Sariq devni minib
-2. Yulduzli tunlar
-3. O'tkan kunlar
-4. Kichik shahzoda
-============================================================
+120 000 so'm > 100 000 so'm bo'lgani uchun 10% chegirma chegiriladi (12 000 so'm).
+
+Yakuniy to'lov: 108 000 so'm.
