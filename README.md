@@ -1,48 +1,90 @@
 # js
-JavaScript-da for tsikli va if shart operatori yordamida berilgan orliqdagi juft sonlarni ajratish hamda ularning yig'indisini hisoblash juda oson.
+JavaScript-da obyektlar (Objects), ularning xususiyatlarini o'zgartirish va ichki metodlarda this kalit so'zidan foydalanishni o'rganish uchun juda qiziqarli vazifa.
 
-Quyida ushbu vazifa uchun toza yozilgan script.js kodi va uning tushunarli README.md faylini keltiraman.
+Avtosalon tizimi mantiqini to'liq bajaradigan script.js kodi va uning README.md qo'llanmasini quyida keltiraman.
 
 1. script.js fayli kodi
 JavaScript
 /**
- * Loyiha: Juft sonlar yig'indisini hisoblash
- * Tavsif: 1 dan 50 gacha bo'lgan sonlar ichidan faqat juftlarini ajratib olib,
- * ularning umumiy yig'indisini for tsikli yordamida hisoblash.
+ * Loyiha: Avtosalon Boshqaruv Tizimi
+ * Tavsif: Mashina obyektini yaratish, xususiyatlarini tashqaridan yangilash,
+ * obyekt metodlari va 'this' operatori yordamida qiymatlarni o'zgartirish.
  */
 
-let yigindi = 0; // Yig'indini saqlash uchun o'zgaruvchi
+// 1. Mashina obyektini e'lon qilish
+const mashina = {
+    brend: "Chevrolet",
+    model: "Gentra",
+    yil: 2022,
+    narx: 13000,
+    tanirovka: false,
 
-// 1 dan 50 gacha bo'lgan sonlarni aylanish (50 ning o'zi ham kiradi: <=)
-for (let i = 1; i <= 50; i++) {
-    // Sonni 2 ga bo'lgandagi qoldiq 0 bo'lsa, u juft son hisoblanadi
-    if (i % 2 === 0) {
-        yigindi += i; // Juft sonni yig'indiga qo'shish
+    // Obyekt haqida ma'lumot beruvchi metod
+    malumotBering: function() {
+        console.log(`Brend: ${this.brend}, Model: ${this.model}, Narxi: ${this.narx}$`);
+    },
+
+    // Tanirovka holatini va narxini yangilovchi metod
+    tanirovkaQildir: function() {
+        this.tanirovka = true;
+        this.narx += 500; // Narxiga 500$ qo'shish
+        console.log("\n😎 Tanirovka qilindi! Mashina narxiga 500$ qo'shildi.\n");
     }
-}
+};
 
-// Yakuniy natijani konsolga chiqarish
-console.log("================== NATIJA ==================");
-console.log(`1 dan 50 gacha bo'lgan juft sonlar yig'indisi: ${yigindi}`);
-console.log("============================================");
+// 2. Obyektdan tashqarida yangi "rang" xususiyatini qo'shish
+mashina.rang = "To'q kulrang";
+
+// 3. Obyektdan tashqarida "narx" xususiyatini yangilash
+mashina.narx = 12500;
+
+// 4. Dasturiy qadamlarni ketma-ket bajarish
+console.log("================= AVTOSALON TIZIMI =================");
+
+// Dastlab ma'lumotlarni chiqaramiz
+mashina.malumotBering();
+
+// Tanirovka qilish metodini ishga tushiramiz
+mashina.tanirovkaQildir();
+
+// Yakuniy holatni tekshirish uchun butun obyektni konsolga chiqaramiz
+console.log("================= YAKUNIY HOLAT =================");
+console.log(mashina);
+console.log("=================================================");
 2. README.md fayli tarkibi
 Markdown
-# Juft Sonlar Yig'indisini Hisoblash Dasturi
+# Avtosalon Boshqaruv Tizimi
 
-Ushbu mantiqiy dastur JavaScript-da `for` tsikli va qoldikli bo'lish (`%`) operatori yordamida ma'lum bir orliqdagi sonlarni saralashni o'rgatadi.
+Ushbu loyiha JavaScript-da Obyektlar (Objects), ularga dinamik ravishda yangi xususiyatlar qo'shish va obyekt ichidagi metodlarda `this` kalit so'zi bilan ishlashni o'rgatadi.
 
-## 📋 Algoritm Qadamlari
+## 🛠 Obyekt mantiqi va o'zgarishlar
 
-1. Yig'indini hisoblab borish uchun boshlang'ich qiymati `0` bo'lgan `yigindi` o'zgaruvchisi yaratildi.
-2. `for` tsikli orqali 1 dan 50 gacha bo'lgan barcha sonlar birma-bir ko'rib chiqiladi.
-3. `if (i % 2 === 0)` sharti yordamida har bir sonning juft yoki toqligi tekshiriladi.
-4. Agar son juft bo'lsa, u `yigindi` o'zgaruvchisiga qo'shib boriladi.
+1. **Dinamik o'zgarishlar:** `rang` xususiyati obyektdan tashqarida qo'shildi va boshlang'ich `narx` (13000) tashqaridan `12500` ga tushirildi.
+2. `malumotBering()` metodi: `this` orqali obyekt ichidagi joriy ma'lumotlarni konsolga chiroyli formatda chiqaradi.
+3. `tanirovkaQildir()` metodi: `tanirovka` qiymatini `true` qiladi va mashina narxini automatic ravishda **500$** ga oshiradi.
 
 ## 💻 Ishga tushirish yo'riqnomasi
 
-Dasturni terminalda ishga tushirish uchun quyidagi buyruqni yozing:
+Dasturni terminal orqali ishga tushirish buyrug'i:
 
 ```bash
 node script.js
-📊 Matematik Natija
-Matematik formulaga ko'ra ham 2 dan 50 gacha bo'lgan juft sonlar yig'indisi 650 ga teng chiqadi.
+📊 Kutilayotgan Natija
+Plaintext
+================= AVTOSALON TIZIMI =================
+Brend: Chevrolet, Model: Gentra, Narxi: 12500$
+
+😎 Tanirovka qilindi! Mashina narxiga 500$ qo'shildi.
+
+================= YAKUNIY HOLAT =================
+{
+  brend: 'Chevrolet',
+  model: 'Gentra',
+  yil: 2022,
+  narx: 13000,
+  tanirovka: true,
+  malumotBering: [Function: malumotBering],
+  tanirovkaQildir: [Function: tanirovkaQildir],
+  rang: "To'q kulrang"
+}
+=================================================
