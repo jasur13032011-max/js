@@ -1,95 +1,63 @@
 # js
-Mana, so'ralgan ikkala vazifani ham o'z ichiga olgan toza va tushunarli JavaScript kodi hamda loyiha uchun README.md fayli.
+Kutubxona tizimi vazifasini JavaScript massiv metodlari (push, shift) va for tsikli yordamida to'liq va xatosiz bajaramiz.
 
-Ushbu kodda brauzer muhitida foydalanuvchidan ma'lumot olish uchun prompt() funksiyasidan foydalanildi (agar Node.js-da ishlatmoqchi bo'lsangiz, o'zgaruvchiga to'g'ridan-to'g'ri qiymat berib sinashingiz mumkin).
+Loyihangiz xuddi avvalgi topshiriqlardek chiroyli tartibda bo'lishi uchun quyidagi ikki faylni yarating.
 
 1. script.js fayli kodi
 JavaScript
 /**
- * 4-Loyiha: "Parol Tekshirish va Mahsulotlar Ro'yxati"
- * Vazifasi: 
- * 1. while tsikli yordamida parolni 3 marta tekshirish va bloklash.
- * 2. for tsikli yordamida massivdagi mahsulotlarni konsolga chiqarish.
+ * Loyiha: Kutubxona Tizimi
+ * Tavsif: Massiv metodlari yordamida kitoblar omborini yangilash,
+ * elementlarni qo'shish, o'chirish va ularni tartib bilan konsolga chiqarish.
  */
 
-// ==========================================
-// 1-QISM: While tsikli bilan parol tekshirish
-// ==========================================
-console.log("================= TIZIMGA KIRISH =================");
+// 1. Dastlabki 3 ta kitobdan iborat massiv yaratamiz
+const kitoblar = ["Dunyoning ishlari", "Sariq devni minib", "Yulduzli tunlar"];
 
-const TO_GRI_PAROL = "Admin123";
-let urinishlarSoni = 0;
-let tizimgaKirdi = false;
+// 2. Yangi kitoblarni massivning OXIRIGA qo'shamiz
+kitoblar.push("O'tkan kunlar", "Kichik shahzoda");
 
-while (urinishlarSoni < 3) {
-    let kiritilganParol = prompt("Iltimos, parolni kiriting:");
-    urinishlarSoni++;
+// 3. Eng BIRINCHI turgan kitobni massiv boshidan o'chirib tashlaymiz
+const olibKetilganKitob = kitoblar.shift();
 
-    if (kiritilganParol === TO_GRI_PAROL) {
-        console.log("✅ Xush kelibsiz! Tizimga muvaffaqiyatli kirdingiz.");
-        tizimgaKirdi = true;
-        break; // Parol to'g'ri bo'lsa, tsikl darhol to'xtatiladi
-    } else {
-        // Agar urinishlar tugamagan bo'lsa, ogohlantirish beramiz
-        if (urinishlarSoni < 3) {
-            console.log(`❌ Parol noto'g'ri. Qolgan urinishlar: ${3 - urinishlarSoni}`);
-        }
-    }
+// Qo'shimcha: Qaysi kitob olib ketilganini konsolda ko'rsatish
+console.log(`🔔 Bildirishnoma: "${olibKetilganKitob}" kitobi o'quvchi tomonidan olib ketildi.\n`);
+
+// 4. Qolgan barcha kitoblarni for tsikli yordamida tartib raqami bilan chiqaramiz
+console.log("================ KUTUBXONADA QOLGAN KITOBLAR ================");
+
+for (let i = 0; i < kitoblar.length; i++) {
+    // i o'zgaruvchisi 0 dan boshlangani uchun foydalanuvchiga 1, 2, 3... ko'rinishida ko'rsatamiz
+    console.log(`${i + 1}. ${kitoblar[i]}`);
 }
 
-// 3 ta urinishdan keyin ham parol topilmasa
-if (!tizimgaKirdi) {
-    console.log("🚨 Karta bloklandi! Bankka murojaat qiling.");
-}
-
-console.log("==================================================\n");
-
-
-// ==========================================
-// 2-QISM: For tsikli bilan massivni aylanish
-// ==========================================
-console.log("================ MAHSULOTLAR DO'KONI ================");
-
-// Mahsulotlar ob'ektlaridan iborat massiv (Array)
-const mahsulotlar = [
-    { nom: "Noutbuk", narx: 8000000 },
-    { nom: "Smartfon", narx: 4500000 },
-    { nom: "Simsiz quloqchin", narx: 600000 },
-    { nom: "Aqlli soat", narx: 1200000 },
-    { nom: "Klaviatura", narx: 350000 }
-];
-
-// For tsikli yordamida ketma-ket chiqarish
-for (let i = 0; i < mahsulotlar.length; i++) {
-    let joriyMahsulot = mahsulotlar[i];
-    console.log(`${i + 1}. ${joriyMahsulot.nom} - Narxi: ${joriyMahsulot.narx} so'm`);
-}
-
-console.log("====================================================");
+console.log("============================================================");
 2. README.md fayli tarkibi
 Markdown
-# 4-Loyiha: Parol Tekshirish va Do'kon Tizimi
+# Kutubxona Boshqaruv Tizimi
 
-Ushbu loyiha JavaScript tilidagi tsikllar (`while`, `for`) va o'tish operatorlari (`break`) bilan ishlashni mustahkamlashga xizmat qiladi.
+Ushbu amaliy loyiha JavaScript tilida massivlar (Array) va ularning asosiy metodlari bilan ishlashni ko'rsatib beradi.
 
-## 📝 Loyiha Qismlari
+## 📋 Bajarilgan Qadamlar
 
-1. **Parol Nazorati (`while` tsikli):**
-   - Foydalanuvchiga to'g'ri parolni kiritish uchun **3 ta imkoniyat** beriladi.
-   - Parol to'g'ri topilsa, `break` operatori orqali tsikl to'xtatiladi va xush kelibsiz xabari chiqadi.
-   - 3 ta urinish muvaffaqiyatsiz tugasa, *"Karta bloklandi"* xabari ko'rsatiladi.
+1. `kitoblar` nomli boshlang'ich massiv e'lon qilindi.
+2. `push()` metodi orqali massiv oxiriga yangi kitoblar muvaffaqiyatli qo'shildi.
+3. `shift()` metodi yordamida eng birinchi element (kitob) ro'yxatdan o'chirildi.
+4. `for` tsikli yordamida omborda qolgan kitoblar tartib raqami (`1, 2, 3...`) bilan konsolga chiqarildi.
 
-2. **Mahsulotlar Ro'yxati (`for` tsikli):**
-   - Ichida kamida 5 ta mahsulot (nomi va narxi) bo'lgan massiv yaratilgan.
-   - `for` tsikli massivning har bir elementini ketma-ket konsolga tartib raqami bilan chiroyli ko'rinishda chiqaradi.
+## 💻 Ishga tushirish yo'riqnomasi
 
-## 🛠 Texnologiyalar
-* **Til:** JavaScript (ES6+)
-* **Ishga tushirish muhiti:** Brauzer (DevTools konsoli) yoki Node.js
+Dasturni kompyuteringizda ishga tushirish uchun quyidagi buyruqni terminalda bajaring:
 
-## 💻 Ishga tushirish qadamlari
+```bash
+node script.js
+📊 Kutilayotgan Natija
+Plaintext
+🔔 Bildirishnoma: "Dunyoning ishlari" kitobi o'quvchi tomonidan olib ketildi.
 
-Dasturda `prompt()` funksiyasi ishlatilgani sababli, uni **brauzer konsolida** ishga tushirish tavsiya etiladi:
-1. `index.html` fayli ochib, unga `script.js` faylini ulang.
-2. Sahifani brauzerda oching va `F12` (Konsol) tugmasini bosing.
-3. Ekranga chiqqan oynaga parolni kiriting (To'g'ri parol: `Admin123`).
+================ KUTUBXONADA QOLGAN KITOBLAR ================
+1. Sariq devni minib
+2. Yulduzli tunlar
+3. O'tkan kunlar
+4. Kichik shahzoda
+============================================================
