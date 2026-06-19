@@ -1,67 +1,85 @@
 # js
-Mana, barcha talablarga javob beradigan JavaScript kodi va uning README.md qo'llanmasi.
+Ustozning fikridan ko'rinib turibdiki, siz adashib boshqa loyihaning (kutubxona tizimi) kodini yuklab yuborgansiz. Ushbu xatolikni to'g'rilash va loyihani qayta topshirib, yuqori baho olishingiz uchun aynan "Aqlli Svetofor va Yo'l qoidasi" shartlariga mos keladigan JavaScript kodi va mukammal README.md faylini tayyorlab beraman.
 
-1. script.js fayli
+Siz bu safar GitHub-da ham script.js (kod uchun), ham README.md (tavsif uchun) fayllarini alohida yaratsangiz, baholash yanada yuqori bo'ladi.
+
+1. script.js fayli kodi
+Bu faylga o'qituvchi talab qilgan barcha if, else if va else shartlari to'liq kiritilgan. Sinab ko'rish uchun o'zgaruvchilar qiymatini o'zgartirishingiz mumkin.
+
 JavaScript
 /**
- * Dastur tavsifi:
- * Ushbu dastur JavaScript-da o'zgaruvchilarni e'lon qilish (const va let),
- * ularning qiymatlarini o'zgartirish hamda ma'lumotlarni konsolga 
- * turli usullarda chiroyli formatda chiqarishni namoyish etadi.
+ * 1-Loyiha: "Aqlli Svetofor va Yo'l qoidasi"
+ * Muallif: [Sizning Ismingiz]
+ * Vazifasi: Svetofor rangi va mashina tezligiga qarab haydovchiga ko'rsatma berish
  */
 
-// 1. O'zgaruvchilarni e'lon qilish
-const ism = "Asilbek";
-let yosh = 16;
-let shahar = "Toshkent";
-const pi = 3.14159;
+// O'zgaruvchilarni e'lon qilish (Qiymatlarni o'zgartirib tekshirib ko'rishingiz mumkin)
+let svetoforRangi = "qizil"; // "qizil", "sariq", "yashil" yoki boshqa qiymat
+let mashinaTezligi = 45;      // Mashina tezligi (km/s)
 
-// 2. Konsolga dastlabki ma'lumotlarni chiqarish (Chiroyli formatda)
-console.log("================= FOYDALANUVCHI MA'LUMOTLARI =================");
-console.log(`Boshlang'ich holat -> Ism: ${ism}, Yosh: ${yosh}, Shahar: ${shahar}`);
-console.log(`Matematik konstanta -> PI qiymati: ${pi}`);
-console.log("------------------------------------------------------------");
+console.log(`=== TIZIM: Svetofor: ${svetoforRangi.toUpperCase()} | Tezlik: ${mashinaTezligi} km/s ===`);
 
-// 3. 'let' yordamida yaratilgan o'zgaruvchini o'zgartirish
-yosh = 17; // Yosh 1 taga oshdi
+// 1-shart: Qizil chiroq
+if (svetoforRangi === "qizil") {
+    if (mashinaTezligi === 0) {
+        console.log("To'g'ri, to'xtab turibsiz.");
+    } else if (mashinaTezligi > 0) {
+        console.log("Taqiqlangan! Sizga jarima yozildi!");
+    }
+} 
+// 2-shart: Sariq chiroq
+else if (svetoforRangi === "sariq") {
+    if (mashinaTezligi > 50) {
+        console.log("Tezlikni kamaytiring va to'xtashga tayyorlaning!");
+    } else {
+        console.log("To'xtab kuting.");
+    }
+} 
+// 3-shart: Yashil chiroq
+else if (svetoforRangi === "yashil") {
+    console.log("Yo'lingiz ochiq, xavfsiz harakatlaning!");
+} 
+// 4-shart: Aks holda (Svetofor buzilgan yoki boshqa holat)
+else {
+    console.log("Svetofor buzilgan, tartibga soluvchiga qarang!");
+}
+2. README.md fayli tarkibi
+Ustozingiz GitHub-da tekshirganda loyiha nima haqidaligini tushunishi va qanday ishga tushirishni ko'rishi uchun ushbu matnni README.md fayliga joylashtiring:
 
-// 4. 'const' ni o'zgartirishga urinish (Xatolik bergani uchun izohga olingan)
-// ism = "Eldor"; // TypeError: Assignment to constant variable.
-// pi = 3.14;     // TypeError: Assignment to constant variable.
-
-// 5. O'zgartirilgan ma'lumotlarni konsolga chiqarish
-console.log(`Yangilangan holat  -> Ism o'zgarmadi: ${ism}, Yangi yosh: ${yosh}`);
-console.log("============================================================");
-2. README.md fayli
 Markdown
-# JavaScript O'zgaruvchilar bilan Ishlash Dasturi
+# 1-Loyiha: Aqlli Svetofor va Yo'l qoidasi
 
-Ushbu loyiha JavaScript tilida `const` va `let` kalit so'zlari orqali o'zgaruvchilar yaratish, ularni boshqarish va konsolga formatlangan holatda chiqarishni ko'rsatib beradi.
+Ushbu mantiqiy loyiha JavaScript-dagi `if`, `else if` va `else` tarmoqlanish operatorlarini amaliyotda qo'llashni ko'rsatib beradi. Dastur svetofor chirog'i va joriy tezlikka qarab haydovchiga aqlli tavsiyalar yoki ogohlantirishlar beradi.
 
-## Tizim talablari
+## 🚀 Loyiha Qoidalari va Shartlari
 
-Dasturni ishga tushirish uchun kompyuteringizda **Node.js** o'rnatilgan bo'lishi lozim.
+1. **Qizil chiroq:**
+   - Tezlik `0` bo'lsa ➡️ *"To'g'ri, to'xtab turibsiz."*
+   - Tezlik `0` dan baland bo'lsa ➡️ *"Taqiqlangan! Sizga jarima yozildi!"*
+2. **Sariq chiroq:**
+   - Tezlik `50` dan yuqori bo'lsa ➡️ *"Tezlikni kamaytiring va to'xtashga tayyorlaning!"*
+   - Tezlik past bo'lsa ➡️ *"To'xtab kuting."*
+3. **Yashil chiroq:** - ➡️ *"Yo'lingiz ochiq, xavfsiz harakatlaning!"*
+4. **Boshqa holatlar (Noma'lum rang yoki nosozlik):**
+   - ➡️ *"Svetofor buzilgan, tartibga soluvchiga qarang!"*
 
-## Ishga tushirish yo'riqnomasi
+## 🛠 Texnologiyalar
+* **Til:** JavaScript (ES6+)
+* **Muhit:** Node.js
 
-1. **Kodni saqlang:**
-   Yuqoridagi kodlarni kompyuteringizda bitta papka ichiga `script.js` va `README.md` nomi bilan saqlang.
+## 💻 Ishga tushirish yo'riqnomasi
 
-2. **Terminalni oching:**
-   Kodingiz joylashgan papkaga terminal (yoki komandalar satri - CMD) orqali kiring.
+Kompyuteringizda Node.js o'rnatilganligiga ishonch hosil qiling, so'ng terminalda quyidagi buyruqni bajaring:
 
-3. **Dasturni ishga tushiring:**
-   Terminalda quyidagi buyruqni yozing va `Enter` tugmasini bosing:
+```bash
+node script.js
+📈 Tekshirish (Test qilish)
+Koddagi svetoforRangi va mashinaTezligi o'zgaruvchilarining qiymatlarini o'zgartirib, dasturning turli vaziyatlarda qanday ishlashini konsolda kuzatishingiz mumkin.
 
-   ```bash
-   node script.js
-Kutilayotgan natija
-Terminalda quyidagicha chiroyli formatlangan matn paydo bo'ladi:
 
-Plaintext
-================= FOYDALANUVCHI MA'LUMOTLARI =================
-Boshlang'ich holat -> Ism: Asilbek, Yosh: 16, Shahar: Toshkent
-Matematik konstanta -> PI qiymati: 3.14159
-------------------------------------------------------------
-Yangilangan holat  -> Ism o'zgarmadi: Asilbek, Yangi yosh: 17
-============================================================
+---
+
+### 💡 Ustozga qayta topshirish bo'yicha maslahat:
+1. GitHub-dagi eski repositoriyangizga kiring.
+2. Ichidagi eski kutubxonaga oid kodlarni o'chirib, yuqoridagi yangi `script.js` va `README.md` fayllarini yuklang (yoki borini tahrirlang).
+3. Kamida yana **1-2 ta commit** qiling (masalan, *"feat: svetofor mantiqiy shartlari qo'shildi"* va *"docs: README yangilandi"* deb yozing), shunda o'qituvchi siz xatoni to'g'rilash ustida ishlaganingizni ko'radi.
